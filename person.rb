@@ -3,7 +3,7 @@ class Person
   attr_reader :id
 
   def initialize(age, name = 'Unknown', parent_permission: true)
-    @id = 111
+    @id =  Random.rand(1...1_000_000)
     @name = name
     @parent_permission = parent_permission
     @age = age
