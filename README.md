@@ -1,65 +1,40 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# School library
 
-> One paragraph statement about the project.
 
-![screenshot](./app_screenshot.png)
 
-Additional description about the project and its features.
+Imagine that you are the librarian of OOP University, and you need a tool to record what books are in the library and who borrows them. This  will allow a you to:
+
+- Add new students or teachers.
+- Add new books.
+- Save records of who borrowed a given book and when.
+
+And in a beautiful and well-organized way!
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
-
-## Live Demo
-
-[Live Demo Link](https://livedemo.com)
-
-
+- Ruby
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+To get a local copy up and running run the codes below in your terminal.
 
+- `clone https://github.com/redwing555/library-school.git`
+- `cd library-school`
 
-To get a local copy up and running follow these simple example steps.
+## Author
 
-### Prerequisites
+👤 **Houssam Hichami**
 
-### Setup
+- GitHub: [@redwing555](https://github.com/redwing555)
+- LinkedIn: [Houssam Hichami](https://linkedin.com/in/houssam-hichami)
 
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
-
-## Authors
-
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/HENRYKC24/ruby-school-library-OOP/issues).
 
 ## Show your support
 
@@ -67,9 +42,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- A special thanks to Microverse for inspiring this project. We are indebted to you all at Microverse
+- A special thanks goes to all our peers at Microverse for being there for us.
 
 ## 📝 License
 
