@@ -1,12 +1,19 @@
+require_relative './corrector'
+
 class Person
   attr_accessor :name, :age
   attr_reader :id
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age, name= 'Unknown', parent_permission: true)
     @id = Random.rand(1...1_000_000)
     @name = name
     @parent_permission = parent_permission
     @age = age
+    @corrector = Corrector.new
+  end
+
+  def validate_name
+    @name = @corrector.correct_name(@name)
   end
 
   def of_age?
@@ -20,6 +27,7 @@ class Person
   private :of_age?
 end
 
-# person = Person.new(19, 'houssam', false)
-# puts person.can_use_service?
-# puts person.instance_eval { of_age? }
+# person = Person.new(19, 'houssammmmmmam')
+# person.validate_name
+# p person.name
+
