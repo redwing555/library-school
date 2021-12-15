@@ -18,6 +18,3 @@ class Student < Person
     "¯\(ツ)/¯"
   end
 end
-
-student1 = Student.new(age: 18, name: 'houssam')
-p student1.name
