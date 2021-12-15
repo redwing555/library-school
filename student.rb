@@ -21,4 +21,3 @@ class Student < Person
     end
   end
 end
-

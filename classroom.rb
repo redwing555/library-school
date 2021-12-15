@@ -15,4 +15,3 @@ class Classroom
     end
   end
 end
-
