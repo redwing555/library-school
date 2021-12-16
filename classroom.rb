@@ -1,5 +1,6 @@
+require_relative './student'
 class Classroom
-  attr_accessor :label
+  attr_accessor :label, :students
 
   def initialize(label)
     @label = label
@@ -10,8 +11,9 @@ class Classroom
     if @students.include?(student)
       puts 'Student already exists in this class'
     else
-      student.add_classroom(self)
       @students.push(student)
+      student.classroom = self
+     
     end
   end
 end
