@@ -13,7 +13,7 @@ class Classroom
     else
       @students.push(student)
       student.classroom = self
-     
+
     end
   end
 end
