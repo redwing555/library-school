@@ -1,5 +1,5 @@
 require_relative './corrector'
-require_relative './rental'
+
 
 class Person
   attr_accessor :id, :name, :age

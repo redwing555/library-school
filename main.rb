@@ -1,12 +1,11 @@
-
-require './student'
-require './person'
-require './book'
-require './teacher'
-require './rental'
+require_relative './student'
+require_relative './person'
+require_relative './book'
+require_relative './teacher'
+require_relative './rental'
 
 class Library
-  def initialize()
+  def initialize
     @books = []
     @rentals = []
     @people = []
@@ -43,19 +42,8 @@ class Library
     print 'Name: '
     name = gets.chomp
     if input == 1
-      parent_permission = nil
-      while parent_permission.nil?
-        print 'Has parent permission? [y/n]: '
-        permission = gets.chomp
-        case permission
-        when 'y'
-          parent_permission = true
-        when 'n'
-          parent_permission = false
-        else
-          puts "Enter a valid option : y or n \n\n"
-        end
-      end
+        print 'Has parent permission? [Y/N]: '
+        parent_permission = gets.chomp.downcase == 'Y'
       @people.push(Student.new(age: age, name: name, parent_permission: parent_permission))
     else
       print 'Specialization: '
@@ -76,24 +64,21 @@ class Library
   end
 
   def create_rental
-    if @books.empty? or @people.empty?
-      puts "Create book or person first to rent a book from our collection! \n\n"
-      return false
-    end
 
-    puts "Select desired book by number \n\n"
     @books.each_with_index do |book, index|
       puts "#{index + 1}) Author: #{book.author}, Title: #{book.title}"
     end
-    print 'Enter desired book number here: '
+    print "Select desired book by number: "
     book_number = gets.chomp.to_i
-
     if (1...@books.length + 1).to_a.include?(book_number) == false
       puts "Enter valid book number. \n\n"
-      return false
+      @books.each_with_index do |book, index|
+        puts "#{index + 1}) Author: #{book.author}, Title: #{book.title}"
+      end
+      print "Select desired book by number:"
+      book_number = gets.chomp.to_i
     end
 
-    puts "Select desired rentee by number \n\n"
     @people.each_with_index do |person, index|
       puts "#{index + 1}) [#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
     end
@@ -102,19 +87,23 @@ class Library
 
     if (1...@people.length + 1).to_a.include?(person_number) == false
       puts "Enter valid rentee number. \n\n"
-      return false
+      @people.each_with_index do |person, index|
+        puts "#{index + 1}) [#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
+      end
+      print 'Enter rentee number here: '
+      person_number = gets.chomp.to_i
     end
 
     print "\n Date (YYYY/MM/DD) : "
     date = gets.chomp
 
-    rental = Rental.new(person: @people[person_number], book: @books[book_number], date: date)
+    rental = Rental.new(person: @people[person_number-1], book: @books[book_number-1], date: date)
     @rentals.push(rental)
     puts "\n Rental created successfully! "
   end
 
   def list_rentals_by_id
-    puts "Enter rentee's ID : "
+    print "Enter rentee's ID : "
     id_input = gets.chomp.to_i
 
     desired_rentals = @rentals.select { |rental| rental.person.id == id_input }
@@ -124,7 +113,7 @@ class Library
     else
       puts 'Rentals: '
       desired_rentals.each do |rental|
-        puts "Date : #{rental.date}, Book title: #{rental.book.title}, Author :#{rental.book.author} "
+        puts "Date : #{rental.date}, Title: #{rental.book.title}, Author :#{rental.book.author}."
       end
       puts
     end
