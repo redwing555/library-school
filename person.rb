@@ -33,5 +33,3 @@ class Person
   private :of_age?
 end
 
-p1 = Person.new(age: 18, name: 'houssam')
-p p1.age
