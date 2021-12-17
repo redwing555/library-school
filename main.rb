@@ -25,11 +25,7 @@ class Library
 
     @people.each do |person|
       person.validate_name
-      if person.instance_of?(Teacher)
-        puts "[#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}, Specialization: #{person.specialization}"
-      else
-        puts "[#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
-      end
+      puts "[#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
     end
     puts
   end
@@ -42,8 +38,8 @@ class Library
     print 'Name: '
     name = gets.chomp
     if input == 1
-        print 'Has parent permission? [Y/N]: '
-        parent_permission = gets.chomp.downcase == 'Y'
+      print 'Has parent permission? [Y/N]: '
+      parent_permission = gets.chomp.downcase == 'Y'
       @people.push(Student.new(age: age, name: name, parent_permission: parent_permission))
     else
       print 'Specialization: '
@@ -63,41 +59,39 @@ class Library
     puts 'Book successfully created! \n\n'
   end
 
-  def create_rental
-
+  def rental_book_detail
     @books.each_with_index do |book, index|
       puts "#{index + 1}) Author: #{book.author}, Title: #{book.title}"
     end
-    print "Select desired book by number: "
-    book_number = gets.chomp.to_i
-    if (1...@books.length + 1).to_a.include?(book_number) == false
-      puts "Enter valid book number. \n\n"
-      @books.each_with_index do |book, index|
-        puts "#{index + 1}) Author: #{book.author}, Title: #{book.title}"
-      end
-      print "Select desired book by number:"
-      book_number = gets.chomp.to_i
-    end
+    print 'Select desired book by number: '
+    gets.chomp.to_i
+  end
 
+  def rental_person_detail
     @people.each_with_index do |person, index|
       puts "#{index + 1}) [#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
     end
     print 'Enter rentee number here: '
-    person_number = gets.chomp.to_i
+    gets.chomp.to_i
+  end
 
+  def create_rental
+    book_number = rental_book_detail
+    if (1...@books.length + 1).to_a.include?(book_number) == false
+      puts "Enter valid book number. \n\n"
+      book_rental_book_detail
+    end
+
+    person_number = rental_person_detail
     if (1...@people.length + 1).to_a.include?(person_number) == false
       puts "Enter valid rentee number. \n\n"
-      @people.each_with_index do |person, index|
-        puts "#{index + 1}) [#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
-      end
-      print 'Enter rentee number here: '
-      person_number = gets.chomp.to_i
+      person_number = rental_person_detail
     end
 
     print "\n Date (YYYY/MM/DD) : "
     date = gets.chomp
 
-    rental = Rental.new(person: @people[person_number-1], book: @books[book_number-1], date: date)
+    rental = Rental.new(person: @people[person_number - 1], book: @books[book_number - 1], date: date)
     @rentals.push(rental)
     puts "\n Rental created successfully! "
   end
@@ -126,35 +120,39 @@ class Library
     puts " 7 - Exit App \n\n\n"
     print '   Enter option : '
   end
+  # rubocop:disable Metrics/CyclomaticComplexity
+
+  def homepage
+    menu
+    user_input = gets.chomp.to_i
+    case user_input
+    when 1
+      list_books
+    when 2
+      list_people
+    when 3
+      create_person
+    when 4
+      create_book
+    when 5
+      create_rental
+    when 6
+      list_rentals_by_id
+    when 7
+      puts 'Thanks for using our library app , hope to see you soon ! '
+    else
+      puts "enter a valid option, try again. \n\n"
+    end
+  end
 
   def run
     user_input = 0
 
-    while user_input != 7
-      menu
-      user_input = gets.chomp.to_i
-      case user_input
-      when 1
-        list_books
-      when 2
-        list_people
-      when 3
-        create_person
-      when 4
-        create_book
-      when 5
-        create_rental
-      when 6
-        list_rentals_by_id
-      when 7
-        puts 'Thanks for using our library app , hope to see you soon ! '
-      else
-        puts "enter a valid option, try again. \n\n"
-      end
-    end
+    homepage while user_input != 7
   end
 end
 
+# rubocop:enable Metrics/CyclomaticComplexity
 def main
   app = Library.new
   app.run

@@ -1,6 +1,5 @@
 require_relative './corrector'
 
-
 class Person
   attr_accessor :id, :name, :age
   attr_reader :parent_permission, :rentals

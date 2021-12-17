@@ -12,6 +12,3 @@ class Teacher < Person
     true
   end
 end
-
-teacher1 = Teacher.new(age: 35, specialization: 'philosophy')
-puts teacher1.specialization
