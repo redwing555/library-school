@@ -12,22 +12,20 @@ class Library
   end
 
   def list_books
-    puts 'Your library is empty, add some books first !' if @books.empty?
+    puts "\n\nYour library is empty, add some books first!" if @books.empty?
 
     @books.each do |book|
       puts "  Author: #{book.author}, Title: #{book.title} \n\n"
     end
-    puts
   end
 
   def list_people
-    puts 'No person is added yet, add someone!' if @people.empty?
+    puts "\n\nNo person is added yet, add someone!" if @people.empty?
 
     @people.each do |person|
       person.validate_name
-      puts "[#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
+      puts "[#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}\n"
     end
-    puts
   end
 
   def create_person
@@ -114,7 +112,7 @@ class Library
   end
 
   def menu
-    puts "Welcome to the School library! \n\n"
+    puts "\n\nWelcome to the School library!\n\n"
     puts "School Library Menu : \n\n\n 1 - List all books\n 2 - List all people \n 3 - Create a person"
     puts " 4 - Create a book \n 5 - Create a rental \n 6 - List all rental for a given person id"
     puts " 7 - Exit App \n\n\n"
@@ -140,6 +138,7 @@ class Library
       list_rentals_by_id
     when 7
       puts 'Thanks for using our library app , hope to see you soon ! '
+      exit
     else
       puts "enter a valid option, try again. \n\n"
     end
