@@ -44,32 +44,30 @@ class Library
     gets.chomp.to_i
   end
 
-  def homepage
-    loop do
-      case menu
-      when 1
-        @books_list.list_books
-      when 2
-        @people_list.list_people
-      when 3
-        @choose_person_type.choose_person
-      when 4
-        @created_books.create_book
-      when 5
-        @created_rentals.create_rental
-      when 6
-        @rentals_list.list_rentals_by_id
-      when 7
-        puts 'Thanks for using our library app , hope to see you soon ! '
-        exit
-      else
-        puts "enter a valid option, try again. \n\n"
-      end
+  def homepage(input)
+    case input
+    when 1
+      @books_list.list_books
+    when 2
+      @people_list.list_people
+    when 3
+      @choose_person_type.choose_person
+    when 4
+      @created_books.create_book
+    when 5
+      @created_rentals.create_rental
+    when 6
+      @rentals_list.list_rentals_by_id
+    else
+      puts 'Thanks for using our library app , hope to see you soon ! '
+      exit
     end
   end
 
   def run
-    homepage
+    loop do
+      homepage(menu)
+    end
   end
 end
 
