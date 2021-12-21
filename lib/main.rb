@@ -3,9 +3,9 @@ require_relative './person'
 require_relative './methods/create_book'
 require_relative './methods/create_student'
 require_relative './methods/create_teacher'
-require_relative './book'
+require_relative './methods/create_rental'
+require_relative './methods/person_choice'
 require_relative './teacher'
-require_relative './rental'
 
 class Library
   def initialize
@@ -31,43 +31,7 @@ class Library
     end
   end
 
-  def rental_book_detail
-    @books.each_with_index do |book, index|
-      puts "#{index + 1}) Author: #{book.author}, Title: #{book.title}"
-    end
-    print 'Select desired book by number: '
-    gets.chomp.to_i
-  end
-
-  def rental_person_detail
-    @people.each_with_index do |person, index|
-      puts "#{index + 1}) [#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
-    end
-    print 'Enter rentee number here: '
-    gets.chomp.to_i
-  end
-
-  def create_rental
-    book_number = rental_book_detail
-    if (1...@books.length + 1).to_a.include?(book_number) == false
-      puts "Enter valid book number. \n\n"
-      book_rental_book_detail
-    end
-
-    person_number = rental_person_detail
-    if (1...@people.length + 1).to_a.include?(person_number) == false
-      puts "Enter valid rentee number. \n\n"
-      person_number = rental_person_detail
-    end
-
-    print "\n Date (YYYY/MM/DD) : "
-    date = gets.chomp
-
-    rental = Rental.new(person: @people[person_number - 1], book: @books[book_number - 1], date: date)
-    @rentals.push(rental)
-    puts "\n Rental created successfully! "
-  end
-
+  
   def list_rentals_by_id
     print "Enter rentee's ID : "
     id_input = gets.chomp.to_i
