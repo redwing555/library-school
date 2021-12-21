@@ -1,11 +1,11 @@
-require_relative './methods/create_book'
-require_relative './methods/create_student'
-require_relative './methods/create_teacher'
-require_relative './methods/create_rental'
-require_relative './methods/person_choice'
-require_relative './methods/list_books'
-require_relative './methods/list_people'
-require_relative './methods/list_rentals_id'
+require_relative './lib/methods/create_book'
+require_relative './lib/methods/create_student'
+require_relative './lib/methods/create_teacher'
+require_relative './lib/methods/create_rental'
+require_relative './lib/methods/person_choice'
+require_relative './lib/methods/list_books'
+require_relative './lib/methods/list_people'
+require_relative './lib/methods/list_rentals_id'
 
 class Library
   def initialize
@@ -44,7 +44,6 @@ class Library
     gets.chomp.to_i
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity
   def homepage
     loop do
       case menu
@@ -67,7 +66,6 @@ class Library
         puts "enter a valid option, try again. \n\n"
       end
     end
-    # rubocop:enable Metrics/CyclomaticComplexity
   end
 
   def run
