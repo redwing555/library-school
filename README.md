@@ -22,7 +22,13 @@ To get a local copy up and running run the codes below in your terminal.
 - `clone https://github.com/redwing555/library-school.git`
 - `cd library-school`
 
-## Author
+## Authors
+
+👤 **Chawanzi Ng'uni**
+
+- GitHub: [@chaw-bot](https://github.com/chaw-bot)
+- Twitter: [@chaw36422087](https://twitter.com/chaw36422087)
+- LinkedIn: [Chawanzi Ng'uni](https://www.linkedin.com/in/chawanzi-ng-uni-449328212/)
 
 👤 **Houssam Hichami**
 
