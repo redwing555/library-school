@@ -1,5 +1,6 @@
 require_relative './student'
 require_relative './person'
+require_relative './methods/create_book'
 require_relative './book'
 require_relative './teacher'
 require_relative './rental'
@@ -45,16 +46,6 @@ class Library
       @people.push(Teacher.new(age: age, name: name, specialization: specialization))
     end
     puts "Person Created!  \n\n"
-  end
-
-  def create_book
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-
-    @books.push(Book.new(title: title, author: author))
-    puts 'Book successfully created! \n\n'
   end
 
   def rental_book_detail
