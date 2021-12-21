@@ -5,6 +5,7 @@ require_relative './methods/create_student'
 require_relative './methods/create_teacher'
 require_relative './methods/create_rental'
 require_relative './methods/person_choice'
+require_relative './methods/list_books'
 require_relative './teacher'
 
 class Library
@@ -12,14 +13,6 @@ class Library
     @books = []
     @rentals = []
     @people = []
-  end
-
-  def list_books
-    puts "\n\nYour library is empty, add some books first!" if @books.empty?
-
-    @books.each do |book|
-      puts "  Author: #{book.author}, Title: #{book.title} \n\n"
-    end
   end
 
   def list_people
