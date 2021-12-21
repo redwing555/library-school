@@ -13,6 +13,6 @@ class CreateBook
 
     created_book = Book.new(title: title, author: author)
     @books.push(created_book)
-    puts 'Book successfully created! \n\n'
+    puts "Book successfully created! \n\n"
   end
 end

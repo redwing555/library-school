@@ -7,7 +7,6 @@ require_relative './methods/list_books'
 require_relative './methods/list_people'
 require_relative './methods/list_rentals_id'
 
-
 class Library
   def initialize
     @books = []
@@ -29,46 +28,50 @@ class Library
     puts 'Please choose an option by entering a number: '
 
     @options = {
-      1: 'List all books',
-      2: 'List all people',
-      3: 'Create a person',
-      4: 'Create a book',
-      5: 'Create a rental',
-      6: 'List all rentals for a given person id',
-      7: 'Exit'
+      '1': 'List all books',
+      '2': 'List all people',
+      '3': 'Create a person',
+      '4': 'Create a book',
+      '5': 'Create a rental',
+      '6': 'List all rentals for a given person id',
+      '7': 'Exit'
     }
 
     @options.each do |index, string|
       puts "#{index} - #{string}"
     end
-
+    print "\nEnter option from above list: "
     gets.chomp.to_i
   end
 
-  loop do
-    case menu
-    when 1
-      @books_list.list_books
-    when 2
-      @people_list.list_people
-    when 3
-      @choose_person_type.choose_person
-    when 4
-      @created_books.create_book
-    when 5
-      @created_rentals.create_rental
-    when 6
-      @rentals_list.list_rentals_by_id
-    when 7
-      puts 'Thanks for using our library app , hope to see you soon ! '
-      exit
-    else
-      puts "enter a valid option, try again. \n\n"
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def homepage
+    loop do
+      case menu
+      when 1
+        @books_list.list_books
+      when 2
+        @people_list.list_people
+      when 3
+        @choose_person_type.choose_person
+      when 4
+        @created_books.create_book
+      when 5
+        @created_rentals.create_rental
+      when 6
+        @rentals_list.list_rentals_by_id
+      when 7
+        puts 'Thanks for using our library app , hope to see you soon ! '
+        exit
+      else
+        puts "enter a valid option, try again. \n\n"
+      end
     end
+    # rubocop:enable Metrics/CyclomaticComplexity
   end
 
   def run
-    menu
+    homepage
   end
 end
 

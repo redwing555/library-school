@@ -1,11 +1,10 @@
 require_relative '../classes/teacher'
 
 class CreateTeacher
-    def initialize(people)
-        @people = people
-    end
+  def initialize(people)
+    @people = people
+  end
 
-    
   def create_teacher
     print 'Age: '
     age = gets.chomp.to_i

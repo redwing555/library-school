@@ -14,7 +14,6 @@ class CreateRental
     print 'Select desired book by number: '
     book_number = gets.chomp.to_i
 
-
     @people.each_with_index do |person, index|
       puts "#{index + 1}) [#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}"
     end
