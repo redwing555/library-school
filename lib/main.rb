@@ -23,33 +23,42 @@ class Library
     @rentals_list = RentalList.new(@rentals)
   end
 
-
-
   def menu
-    puts "\n\nWelcome to the School library!\n\n"
-    puts "School Library Menu : \n\n\n 1 - List all books\n 2 - List all people \n 3 - Create a person"
-    puts " 4 - Create a book \n 5 - Create a rental \n 6 - List all rental for a given person id"
-    puts " 7 - Exit App \n\n\n"
-    print '   Enter option : '
-  end
-  # rubocop:disable Metrics/CyclomaticComplexity
+    puts 'Welcome to the OOP School Library App!'
+    puts "\n"
+    puts 'Please choose an option by entering a number: '
 
-  def homepage
-    menu
-    user_input = gets.chomp.to_i
-    case user_input
+    @options = {
+      1: 'List all books',
+      2: 'List all people',
+      3: 'Create a person',
+      4: 'Create a book',
+      5: 'Create a rental',
+      6: 'List all rentals for a given person id',
+      7: 'Exit'
+    }
+
+    @options.each do |index, string|
+      puts "#{index} - #{string}"
+    end
+
+    gets.chomp.to_i
+  end
+
+  loop do
+    case menu
     when 1
-      list_books
+      @books_list.list_books
     when 2
-      list_people
+      @people_list.list_people
     when 3
-      create_person
+      @choose_person_type.choose_person
     when 4
-      create_book
+      @created_books.create_book
     when 5
-      create_rental
+      @created_rentals.create_rental
     when 6
-      list_rentals_by_id
+      @rentals_list.list_rentals_by_id
     when 7
       puts 'Thanks for using our library app , hope to see you soon ! '
       exit
@@ -59,13 +68,10 @@ class Library
   end
 
   def run
-    user_input = 0
-
-    homepage while user_input != 7
+    menu
   end
 end
 
-# rubocop:enable Metrics/CyclomaticComplexity
 def main
   app = Library.new
   app.run
