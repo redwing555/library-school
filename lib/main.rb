@@ -1,6 +1,7 @@
 require_relative './student'
 require_relative './person'
 require_relative './methods/create_book'
+require_relative './methods/create_student'
 require_relative './book'
 require_relative './teacher'
 require_relative './rental'
@@ -27,25 +28,6 @@ class Library
       person.validate_name
       puts "[#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}\n"
     end
-  end
-
-  def create_person
-    print 'Do you want to create a student(1) or a teacher(2)? [Input the number]: '
-    input = gets.chomp.to_i
-    print 'Age: '
-    age = gets.chomp.to_i
-    print 'Name: '
-    name = gets.chomp
-    if input == 1
-      print 'Has parent permission? [Y/N]: '
-      parent_permission = gets.chomp.downcase == 'Y'
-      @people.push(Student.new(age: age, name: name, parent_permission: parent_permission))
-    else
-      print 'Specialization: '
-      specialization = gets.chomp
-      @people.push(Teacher.new(age: age, name: name, specialization: specialization))
-    end
-    puts "Person Created!  \n\n"
   end
 
   def rental_book_detail
