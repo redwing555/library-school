@@ -1,46 +1,29 @@
-require_relative './student'
-require_relative './person'
 require_relative './methods/create_book'
 require_relative './methods/create_student'
 require_relative './methods/create_teacher'
 require_relative './methods/create_rental'
 require_relative './methods/person_choice'
 require_relative './methods/list_books'
-require_relative './teacher'
+require_relative './methods/list_people'
+require_relative './methods/list_rentals_id'
+
 
 class Library
   def initialize
     @books = []
-    @rentals = []
+    @created_books = CreateBook.new(@books)
+    @books_list = BookList.new(@books)
+
     @people = []
+    @people_list = PeopleList.new(@people)
+    @choose_person_type = PersonType.new(@people)
+
+    @rentals = []
+    @created_rentals = CreateRental.new(@people, @rentals, @books)
+    @rentals_list = RentalList.new(@rentals)
   end
 
-  def list_people
-    puts "\n\nNo person is added yet, add someone!" if @people.empty?
 
-    @people.each do |person|
-      person.validate_name
-      puts "[#{person.class.name}] Name: #{person.name}, ID:#{person.id}, Age: #{person.age}\n"
-    end
-  end
-
-  
-  def list_rentals_by_id
-    print "Enter rentee's ID : "
-    id_input = gets.chomp.to_i
-
-    desired_rentals = @rentals.select { |rental| rental.person.id == id_input }
-
-    if desired_rentals.empty?
-      puts 'No book rented for this person.'
-    else
-      puts 'Rentals: '
-      desired_rentals.each do |rental|
-        puts "Date : #{rental.date}, Title: #{rental.book.title}, Author :#{rental.book.author}."
-      end
-      puts
-    end
-  end
 
   def menu
     puts "\n\nWelcome to the School library!\n\n"
