@@ -98,26 +98,21 @@ module Storage
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def person_index_lookup(object)
     object = JSON.parse(object['person'])
-    classname = object['classname']
-    age = object['age']
-    name = object['name']
-    specialization = object['specialization']
-    parent_permission = object['parent_permission']
 
-    if classname == 'Teacher'
+    if object['classname'] == 'Teacher'
       @people.each_with_index do |person, index|
-        if classname == person.class.to_s &&
-           name == person.name && age == person.age &&
-           specialization == person.specialization
+        if object['classname'] == person.class.to_s &&
+           object['name'] == person.name && object['age'] == person.age &&
+           object['specialization'] == person.specialization
           return index
         end
       end
     else
       @people.each_with_index do |person, index|
-        if age == person.age &&
-           name == person.name &&
-           parent_permission == person.parent_permission &&
-           classname == person.class.to_s
+        if object['age'] == person.age &&
+           object['name'] == person.name &&
+           object['parent_permission'] == person.parent_permission &&
+           object['classname'] == person.class.to_s
           return index
         end
       end
