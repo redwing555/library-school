@@ -25,7 +25,17 @@ module Storage
     
     end
 
+    def from_file_to_books(books)
+        book_data = JSON.parse(books)["books"]
     
+        return if book_data == []
+        
+        book_data.each do |object|
+          file = JSON.parse(object)
+          created_book = Book.new(title: file['title'],author: file['author'])
+          @books.push(created_book) if file
+        end
+    end
 end
 
 
