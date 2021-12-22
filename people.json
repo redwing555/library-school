@@ -1,1 +1,1 @@
-{"people":["\"#<Teacher:0x0000016d5a22e048>\"","\"#<Teacher:0x0000016d5a22d468>\""]}
+{"people":["{\"classname\":\"Student\",\"age\":15,\"name\":\"Bob\",\"parent_permission\":false,\"classroom\":null}","{\"classname\":\"Teacher\",\"age\":45,\"name\":\"marc\",\"parent_permission\":true,\"specialization\":\"math\"}","{\"classname\":\"Student\",\"age\":20,\"name\":\"jhon doe\",\"parent_permission\":false,\"classroom\":null}"]}

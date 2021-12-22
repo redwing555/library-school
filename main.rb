@@ -43,10 +43,10 @@ class Library
       from_file(people: people)
     end
 
-    if File.exist?('rentals.json') && File.exist?('people.json') && File.exist?('books.json')
-      rentals = File.read 'rentals.json'
-      from_file(rentals: rentals)
-    end
+    return unless File.exist?('rentals.json') && File.exist?('people.json') && File.exist?('books.json')
+
+    rentals = File.read 'rentals.json'
+    from_file(rentals: rentals)
   end
 
   def menu
