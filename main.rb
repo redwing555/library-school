@@ -6,8 +6,11 @@ require_relative './lib/methods/person_choice'
 require_relative './lib/methods/list_books'
 require_relative './lib/methods/list_people'
 require_relative './lib/methods/list_rentals_id'
+require_relative './lib/modules/storage'
+require 'json'
 
 class Library
+  include Storage
   def initialize
     @books = []
     @created_books = CreateBook.new(@books)
@@ -20,6 +23,18 @@ class Library
     @rentals = []
     @created_rentals = CreateRental.new(@people, @rentals, @books)
     @rentals_list = RentalList.new(@rentals)
+  end
+
+  def save_data
+    from_books_to_file
+    puts 'data successfully saved !'
+  end
+
+  def load_data
+    if File.exist?('books.json')
+      books = File.read 'books.json'
+      from_file(books: books)
+    end
   end
 
   def menu
@@ -59,6 +74,7 @@ class Library
     when 6
       @rentals_list.list_rentals_by_id
     else
+      save_data
       puts 'Thanks for using our library app , hope to see you soon ! '
       exit
     end
@@ -73,6 +89,7 @@ end
 
 def main
   app = Library.new
+  app.load_data
   app.run
 end
 
