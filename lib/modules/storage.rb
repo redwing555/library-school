@@ -10,6 +10,7 @@ module Storage
     def from_file(people: nil, books: nil, rentals: nil)
         from_file_to_books(books) if books
         from_file_to_people(people) if people
+        from_file_to_rentals(rentals) if rentals
     end
 
     def from_books_to_file
@@ -67,7 +68,18 @@ module Storage
 
         File.write('people.json', people_json)
     end
-
+    
+    def from_rentals_to_file
+        rentals_json = []
+        @rentals.each do |rental|
+        rentals_json.push(rental.to_json)
+        end
+    
+        rentals_json = JSON.dump({
+                                   rentals: rentals_json
+                                 })
+        File.write('rentals.json',rentals_json)
+    end
 
 end
 
