@@ -17,10 +17,11 @@ And in a beautiful and well-organized way!
 - Ruby
 ## Getting Started
 
-To get a local copy up and running run the codes below in your terminal.
+To get a local copy up and running the app  run the codes below in your terminal.
 
 - `clone https://github.com/redwing555/library-school.git`
 - `cd library-school`
+- `ruby main.rb`
 
 ## Authors
 
