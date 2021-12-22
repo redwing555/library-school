@@ -27,6 +27,7 @@ class Library
 
   def save_data
     from_books_to_file
+    from_people_to_file
     puts 'data successfully saved !'
   end
 
@@ -34,6 +35,11 @@ class Library
     if File.exist?('books.json')
       books = File.read 'books.json'
       from_file(books: books)
+    end
+
+    if File.exist?('people.json')
+      people = File.read 'people.json'
+      from_file(people: people)
     end
   end
 
