@@ -81,6 +81,49 @@ module Storage
         File.write('rentals.json',rentals_json)
     end
 
+    def from_file_to_rentals(rentals)
+        rentals_data = JSON.parse(rentals)["rentals"]
+        return if rentals_data == []
+    
+        rentals_data.each do |object|
+          json_object = JSON.parse(object) 
+          rental = Rental.new(date:json_object['date'],person: @people[person_index_lookup(json_object)],book: @books[book_index_lookup(json_object)])
+         
+          @rentals.push(rental) if json_object
+        end
+    end
+    
+    
+    
+      def person_index_lookup(object)
+        object = JSON.parse(object['person'])
+        classname = object['classname']
+        age = object['age']
+        name = object['name']
+        specialization = object['specialization']
+        parent_permission = object['parent_permission']
+    
+        if classname == 'Teacher'
+            @people.each_with_index do |person, index|
+                 if ( classname == person.class.to_s && name == person.name && age == person.age &&  specialization == person.specialization)
+                    return index 
+                 end
+            end
+        else
+            @people.each_with_index do |person, index|
+                 if (age == person.age and name == person.name and parent_permission == person.parent_permission and classname == person.class.to_s)
+                    return index
+                 end
+            end
+        end
+      end
+    
+      def book_index_lookup(object)
+        object = JSON.parse(object['book'])
+        @books.each_with_index do |book, index|
+          return index if object['title'] == book.title and object['author'] == book.author
+        end
+      end
 end
 
 
