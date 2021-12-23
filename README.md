@@ -23,6 +23,10 @@ To get a local copy up and running the app  run the codes below in your terminal
 - `cd library-school`
 - `ruby main.rb`
 
+To run the tests:
+- Run `gem install rspec` to install RSpec
+- Run `rspec spec --format documentation` to run the tests
+
 ## Authors
 
 👤 **Chawanzi Ng'uni**
